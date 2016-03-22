@@ -7,8 +7,10 @@ UVA Online Judge : http://uva.onlinejudge.org/
 
 ##History
 
-2015/03/15 : UVA      - 100 - The 3n + 1 problem (Solved)
+|Date | Category | Problems Name | Status | Link   |
+|-----|----------|---------------|--------|--------|
+2015/03/15| UVA       | 100 - The 3n + 1 problem | Solved | https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=36 |
+2015/11/01| ALGOSPOT  |FESTIVAL | Solved | https://algospot.com/judge/problem/read/FESTIVAL |
 
-2015/11/01 : ALGOSPOT - FESTIVAL (Solved)
 
 
