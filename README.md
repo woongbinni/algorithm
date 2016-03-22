@@ -1,11 +1,11 @@
 #Algorithm
 
-UVA Online Judge와 알고스팟 문제들의 Solution을 담았습니다.
-얼마나 부지런히 풀지는 저도 모르겠지만;;;
+UVA Online Judge와 알고스팟의 알고리즘 문제풀이입니다.
 
 UVA Online Judge : http://uva.onlinejudge.org/
+Algospot         : https://algospot.com/
 
-##History
+## History
 
 |Date | Category | Problems Name | Status | Link   |
 |-----|----------|---------------|--------|--------|
