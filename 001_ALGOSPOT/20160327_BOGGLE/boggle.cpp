@@ -6,6 +6,17 @@ using namespace std;
 
 int main(void)
 {
+    int test_case = 0;
+    int idx_i;
+
+    scanf("%d", &test_case);
+
+    for(idx_i = 0; i<test_case; ++i)
+    {
+        // scanf("%c%c%c%c%c", )
+
+
+    }
 
 
 
