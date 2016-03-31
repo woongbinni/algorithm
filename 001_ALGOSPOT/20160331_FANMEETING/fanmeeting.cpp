@@ -16,7 +16,7 @@ int main(void){
         scanf("%s", fans);
 
         int len_members = strlen(members);
-        for(int j=0; j<len_members; j++){
+        for(int j=0; j<len_members; ++j){
             if(members[j] == 'M')
                 members[j] -= 'L';
             else
@@ -24,7 +24,7 @@ int main(void){
         }
 
         int len_fans = strlen(fans);
-        for(int j=0; j<len_fans; j++){
+        for(int j=0; j<len_fans; ++j){
             if(fans[j] == 'M')
                 fans[j] -= 'L';
             else
@@ -33,14 +33,13 @@ int main(void){
 
         int len_until = len_fans - len_members + 1;
         int hug_cnt = 0;
-        for(int j=0; j<len_until; j++){
-            int sum = 0;
-            for(int k=0; k<len_members; k++){
-                sum += (members[k] && fans[j+k]);
-                if(sum > 0)
+        for(int j=0; j<len_until; ++j){
+            int k;
+            for(k=0; k<len_members; ++k){
+                if(members[k] && fans[j+k])
                     break;
             }
-            if(sum == 0)
+            if(k == len_members)
                 hug_cnt += 1;
         }
 
