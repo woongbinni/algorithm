@@ -11,22 +11,17 @@ int snapshot_cnt[11];
 int dir_x[8] = { -1, 0, 1, 1, 1, 0, -1, -1};
 int dir_y[8] = { -1, -1, -1, 0, 1, 1, 1, 0};
 
-bool boggle_snapshot(char* sample_str)
+void boggle_snapshot(char* sample_str)
 {
     for(int i=0; i<strlen(sample_str); ++i){
         for(int j=0; j<5; ++j){
             for(int k=0; k<5; ++k){
                 if(boggle[j][k] == sample_str[i]){
                     snapshot_boggle[i][j][k] = true;
-                    snapshot_cnt[i] += 1;
                 }
             }
         }
-        if(snapshot_cnt[i] == 0){
-            return false;
-        }
     }
-    return true;
 }
 
 bool boggle_find_text(char* search_text, int search_idx, int cur_x, int cur_y)
@@ -78,11 +73,7 @@ int main(void)
             printf("%s ", sample_str);
 
             memset(snapshot_boggle, false, sizeof(snapshot_boggle));
-            memset(snapshot_cnt, 0, sizeof(snapshot_cnt));
-            if(boggle_snapshot(sample_str) == false){
-                printf("NO\n");
-                continue;
-            }
+            boggle_snapshot(sample_str);
 
             for (int j = 0; j < 5; j++) {
                 for (int k = 0; k < 5; k++) {

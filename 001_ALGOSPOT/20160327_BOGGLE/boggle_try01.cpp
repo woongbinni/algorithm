@@ -5,29 +5,8 @@ using namespace std;
 #include <string.h>
 
 char boggle[5][5];
-bool snapshot_boggle[11][5][5];
-int snapshot_cnt[11];
-
 int dir_x[8] = { -1, 0, 1, 1, 1, 0, -1, -1};
 int dir_y[8] = { -1, -1, -1, 0, 1, 1, 1, 0};
-
-bool boggle_snapshot(char* sample_str)
-{
-    for(int i=0; i<strlen(sample_str); ++i){
-        for(int j=0; j<5; ++j){
-            for(int k=0; k<5; ++k){
-                if(boggle[j][k] == sample_str[i]){
-                    snapshot_boggle[i][j][k] = true;
-                    snapshot_cnt[i] += 1;
-                }
-            }
-        }
-        if(snapshot_cnt[i] == 0){
-            return false;
-        }
-    }
-    return true;
-}
 
 bool boggle_find_text(char* search_text, int search_idx, int cur_x, int cur_y)
 {
@@ -36,21 +15,23 @@ bool boggle_find_text(char* search_text, int search_idx, int cur_x, int cur_y)
         return false;
     if (cur_y < 0 || cur_y >= 5)
         return false;
-    if (snapshot_boggle[search_idx][cur_x][cur_y] == false) {
+    if (search_text[search_idx] != boggle[cur_x][cur_y]) {
         return false;
     }
     if (strlen(&(search_text[search_idx])) == 1) {
         //printf("FOUND!!\n");
         return true;
     }
-    return boggle_find_text(search_text, search_idx+1, cur_x+dir_x[0], cur_y+dir_y[0])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[1], cur_y+dir_y[1])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[2], cur_y+dir_y[2])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[3], cur_y+dir_y[3])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[4], cur_y+dir_y[4])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[5], cur_y+dir_y[5])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[6], cur_y+dir_y[6])
-    ||boggle_find_text(search_text, search_idx+1, cur_x+dir_x[7], cur_y+dir_y[7]);
+    for (int i = 0; i < 8; i++) {
+        int next_x = cur_x + dir_x[i];
+        int next_y = cur_y + dir_y[i];
+
+        if (boggle_find_text(search_text, search_idx + 1, next_x, next_y) == true) {
+            //printf("FWD FOUND!!\n");
+            return true;
+        }
+    }
+    return false;
 }
 
 int main(void)
@@ -76,13 +57,6 @@ int main(void)
         for (int i = 0; i < sample_case; i++) {
             scanf("%s", sample_str);
             printf("%s ", sample_str);
-
-            memset(snapshot_boggle, false, sizeof(snapshot_boggle));
-            memset(snapshot_cnt, 0, sizeof(snapshot_cnt));
-            if(boggle_snapshot(sample_str) == false){
-                printf("NO\n");
-                continue;
-            }
 
             for (int j = 0; j < 5; j++) {
                 for (int k = 0; k < 5; k++) {
