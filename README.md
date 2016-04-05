@@ -16,6 +16,6 @@ Algospot         : https://algospot.com/
 2016/03/24| ALGOSPOT  | PICNIC                   | Solved | C++      | 1  | [Click Here!!](https://algospot.com/judge/problem/read/PICNIC)     |
 2016/03/27| ALGOSPOT  | BOGGLE                   | Solved | C++      | 3  | [Click Here!!](https://algospot.com/judge/problem/read/BOGGLE)     |
 2016/03/31| ALGOSPOT  | FANMEETING               | Trying | JAVA/C++ | 2  | [Click Here!!](https://algospot.com/judge/problem/read/FANMEETING) |
-2016/04/03| ALGOSPOT  | BOARDCOVER               | Trying | C++      | -  | [Click Here!!](https://algospot.com/judge/problem/read/BOARDCOVER) |
+2016/04/03| ALGOSPOT  | BOARDCOVER               | Solved | C++      | 1  | [Click Here!!](https://algospot.com/judge/problem/read/BOARDCOVER) |
 
 
