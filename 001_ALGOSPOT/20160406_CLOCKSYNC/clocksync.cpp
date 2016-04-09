@@ -10,6 +10,7 @@ int main(void){
     scanf("%d", &test_case);
 
     for(idx = 0; idx < test_case; idx++){
+        
 
 
     }
