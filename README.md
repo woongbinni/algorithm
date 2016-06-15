@@ -18,5 +18,9 @@ Algospot         : https://algospot.com/
 2016/03/31| ALGOSPOT  | FANMEETING               | Trying | JAVA/C++ | 2  | [Click Here!!](https://algospot.com/judge/problem/read/FANMEETING) |
 2016/04/03| ALGOSPOT  | BOARDCOVER               | Solved | C++      | 1  | [Click Here!!](https://algospot.com/judge/problem/read/BOARDCOVER) |
 2016/04/06| ALGOSPOT  | CLOCKSYNC                | Trying | C++      |    | [Click Here!!](https://algospot.com/judge/problem/read/CLOCKSYNC)  |
+2016/05/25| ALGOSPOT  | WILDCARD                 | Solved | C++      | 4  | [Click Here!!](https://algospot.com/judge/problem/read/WILDCARD)   |
+2016/06/09| ALGOSPOT  | ROOTS                    | Solved | C++      | 8  | [Click Here!!](https://algospot.com/judge/problem/read/ROOTS)      |
+2016/06/13| ALGOSPOT  | STRJOIN                  | Solved | C++      | 1  | [Click Here!!](https://algospot.com/judge/problem/read/STRJOIN)    |
+
 
 
