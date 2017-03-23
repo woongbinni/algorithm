@@ -37,42 +37,71 @@ using namespace std;
 #include <stdlib.h>
 #include <string.h>
 #include <algorithm>
-#include <vector>
+
+typedef struct _candle {
+  int limit;
+  int duration;
+} candle;
+
+typedef struct _duration {
+  int from;
+  int to;
+}duration;
 
 int T, N;
-vector<int> oil[1000001];
-int smell[1000001];
+candle candles[1000001];
+duration durations[1000001];
+
+bool candle_comp(candle a, candle b){
+  return (a.limit + a.duration) < (b.limit + b.duration);
+}
+
+int solve(){
+  int retVal = candles[0].duration;
+  int duration_cnt = 1;
+  durations[0].from = candles[0].limit;
+  durations[0].to = candles[0].duration;
+
+  for(int i=1; i<N; ++i){
+    int inc = 0;
+    for(int j=0; j<duration_cnt; ++j){
+      if(candles[i].limit == durations[j].to){
+        durations[duration_cnt+inc].from = durations[j].from;
+        durations[duration_cnt+inc].to = candles[i].limit + candles[i].duration;
+        if((durations[duration_cnt+inc].to - durations[duration_cnt+inc].from) > retVal){
+          retVal = (durations[duration_cnt+inc].to - durations[duration_cnt+inc].from);
+        }
+        ++inc;
+      }
+    }
+    durations[duration_cnt+inc].from = candles[i].limit;
+    durations[duration_cnt+inc].to = candles[i].limit + candles[i].duration;
+    if((durations[duration_cnt+inc].to - durations[duration_cnt+inc].from) > retVal){
+      retVal = (durations[duration_cnt+inc].to - durations[duration_cnt+inc].from);
+    }
+    ++inc;
+    duration_cnt += inc;
+  }
+  return retVal;
+}
 
 int main(void)
 {
   scanf("%d", &T);
 
   for(int tc=1; tc<=T; ++tc){
-    int result = 0;
     scanf("%d", &N);
 
-
-    memset(smell, 0x00, sizeof(smell));
+    memset(candles, 0x00, sizeof(candles));
+    memset(durations, 0x00, sizeof(durations));
 
     for(int i=0; i<N; ++i){
-      int limit, duration;
-      scanf("%d%d", &limit, &duration);
-      oil[limit].push_back(duration);
-      if(smell[limit] < duration){
-        smell[limit] = duration;
-      }
+      scanf("%d%d", &(candles[i].limit), &(candles[i].duration));
     }
 
-    int elapsed = 0;
+    sort(candles, candles+N, candle_comp);
 
-    for(int i=0; i<1000001; ++i){
-      if(oil[i].size() == 0)
-        continue;
-
-
-
-
-    }
+    printf("#%d %d\n", tc, solve());
   }
 
   return 0;
