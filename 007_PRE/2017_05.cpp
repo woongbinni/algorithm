@@ -11,7 +11,6 @@ typedef struct _home_info{
   vector<int> node_list;
 }home_info;
 
-
 int T, N, M;
 int home_heat[100001];
 home_info home_list[100001];
@@ -64,25 +63,23 @@ int main(void){
 
     int idx = 1;
     while(total_heat > 0){
-      int temp = home_heat[home_list[idx].idx];
-      if(temp > 0){
-        home_heat[home_list[idx].idx] = 0;
-        total_heat -= temp;
-        result += temp;
-      }
+      int max_temp = home_heat[home_list[idx].idx];
+
+      if(max_temp != 0){
+
+      home_heat[home_list[idx].idx] = 0;
+      total_heat -= max_temp;
 
       for(int i=0; i<home_list[idx].node_list.size(); ++i){
-        if(home_heat[home_list[idx].node_list[i]] >= 0){
-          if(home_heat[home_list[idx].node_list[i]] >= temp){
-            home_heat[home_list[idx].node_list[i]] -= temp;
-            total_heat -= temp;
-          }
-          else{
-            total_heat -= home_heat[home_list[idx].node_list[i]];
-            home_heat[home_list[idx].node_list[i]] = 0;
-          }
+        if(home_heat[home_list[idx].node_list[i]] > max_temp){
+          max_temp = home_heat[home_list[idx].node_list[i]];
         }
+        total_heat -= home_heat[home_list[idx].node_list[i]];
+        home_heat[home_list[idx].node_list[i]] = 0;
       }
+      }
+
+      result += max_temp;
       ++idx;
     }
 
