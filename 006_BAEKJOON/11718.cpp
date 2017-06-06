@@ -1,10 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void){
-  char str[101];
-  while(scanf("%s", str)!=EOF){
-    printf("%s\n", str);
-  }
-  return 0;
+    char temp;
+    while(1){
+        temp = getchar();
+        if(temp == EOF)
+            break;
+        else
+            putchar(temp);
+    }
+        
+    return 0;
 }
 
