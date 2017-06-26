@@ -4,21 +4,23 @@
 
 int main(void){
   char temp;
-  char before_temp;
+  char before_char = 0;
   int result = 0;
+  
   while(1){
-    before_temp = temp;
     temp = getchar();
-    if(temp == ' '){
-      if(before_temp != ' '){
+    if(temp == EOF){
+      break;
+    }
+
+    if(temp != ' ' && temp != '\t' && temp != '\n'){
+      if(before_char == 0){
         result += 1;
+        before_char = 1;
       }
     }
-    else if(temp == EOF){
-      if(before_temp != ' '){
-        result += 1;
-      }
-      break;
+    else{
+      before_char = 0;
     }
   }
 
