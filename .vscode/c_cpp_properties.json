@@ -52,8 +52,10 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceRoot}",
+                "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/include",
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
-                "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+                "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
+                "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
             ],
             "defines": [
                 "_DEBUG",
@@ -62,8 +64,10 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/include/*",
                     "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
-                    "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+                    "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/*",
+                    "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/*"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
