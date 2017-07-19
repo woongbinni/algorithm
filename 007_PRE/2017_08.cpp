@@ -10,7 +10,7 @@ int T, N;
 vector<int> childNodeList[10001];
 int node[10001];
 char visited[10001];
-int dp[10001][10001];
+int dp[10001][100];
 int maxChildCnt;
 int result;
 
