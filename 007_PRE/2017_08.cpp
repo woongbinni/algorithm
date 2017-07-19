@@ -53,6 +53,10 @@ int solve(int nodeIdx, int nodeVal){
 int main(void){
 	scanf("%d", &T);
 
+	for(int i=0; i<10000; ++i){
+		childNodeList[i].reserve(10000);
+	}
+
 	for(int tc=1; tc<=T; ++tc){
 		int root = 0;
 		maxChildCnt = 0;
@@ -73,9 +77,11 @@ int main(void){
 			}
 			else{
 				childNodeList[node[i]].push_back(i);
-				if(childNodeList[node[i]].size() > maxChildCnt)
-					maxChildCnt = childNodeList[node[i]].size();
 			}
+		}
+
+		for(int i=0; i<N; ++i){
+			maxChildCnt = max(maxChildCnt, (int)childNodeList[i].size());
 		}
 
 		result = 0x7FFFFFFF;
