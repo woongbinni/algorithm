@@ -13,13 +13,16 @@ int main(void)
 
     for(int tc=0; tc<T; ++tc){
         scanf("%d%d%d", &H, &W, &N);
-        room_no = N % H;
-        room_no *= 100;
-        if(room_no == 0){
-            room_no = 100;
+        int floor = 0;
+        int room_no = 1;
+        for(int i=1; i<=N; ++i){
+            floor += 1;
+            if(floor > H){
+                floor = 1;
+                room_no += 1;
+            }
         }
-        room_no += (N / H) + 1;
-        printf("%d\n", room_no);
+        printf("%d\n", (floor * 100) + room_no);
     }
 
     return 0;
