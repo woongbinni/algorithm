@@ -3,6 +3,7 @@ using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <algorithm>
 
 int T, M, N, x, y;
 
@@ -12,30 +13,25 @@ int main(void){
     for(int tc=0; tc<T; ++tc){
         scanf("%d%d%d%d", &M, &N, &x, &y);
 
-        int temp_x = 1;
-        int temp_y = 1;
-        int result = 1;
+        int a = 0;
+        int b = 0;
+        int count = min(x, y);
 
-        while(1){
-            if(temp_x == M && temp_y == N){
-                printf("-1\n");
-                break;
+        while(count <= (M * N)){
+            if((M*a+x) < (N*b+y)){
+                a += 1;
             }
-            else if(temp_x == x && temp_y == y){
-                printf("%d\n", result);
-                break;
+            else if((M*a+x) > (N*b+y)){
+                b += 1;
             }
             else{
-                temp_x += 1;
-                temp_y += 1;
-                if(temp_x > M){
-                    temp_x = 1;
-                }
-                if(temp_y > N){
-                    temp_y = 1;
-                }
-                result += 1;
+                printf("%d\n", M*a+x);
+                break;
             }
+            count = min((M*a+x), (N*b+y));
+        }
+        if(count > (M*N)){
+            printf("-1\n");
         }
     }
 
