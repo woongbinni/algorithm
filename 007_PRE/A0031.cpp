@@ -73,8 +73,19 @@ public class Solution {
 			N = Integer.parseInt(br.readLine());
 			System.out.println("#" + t + " " + D[N]);
 		}
-
 	}
 }
 */
 
+#include <iostream>
+using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void){
+
+
+
+	return 0;
+}
