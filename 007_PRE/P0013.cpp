@@ -32,3 +32,78 @@
 #1 12
 #2 15
 */
+
+/*
+import java.util.*;
+import java.io.*;
+ 
+public class Solution{
+
+    static StringTokenizer st ;
+    static ArrayList<Integer>[] AL;
+    static long D[][];
+    
+    public static void main(String args[]) throws NumberFormatException, IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+         
+        int TestCase = Integer.parseInt(br.readLine());
+         
+         
+        for(int T = 1; T <= TestCase ; T++){
+            st = new StringTokenizer(br.readLine());
+            int N = Integer.parseInt(st.nextToken());
+            int K = Integer.parseInt(st.nextToken());
+             
+            AL = new ArrayList[N+1];
+            D = new long[K+1][N+1];
+             
+            for(int i = 1; i <= N ; i++){
+                AL[i] = new ArrayList<Integer>();
+            }
+ 
+            for(int i = 1; i < N ; i++){
+                st = new StringTokenizer(br.readLine());
+                 
+                int from = Integer.parseInt(st.nextToken());
+                int to = Integer.parseInt(st.nextToken());
+                 
+                AL[from].add(to);
+                AL[to].add(from);
+            }
+ 
+            st = new StringTokenizer(br.readLine(), " ");
+ 
+            for(int i = 1; i <= N ; i++){
+                D[0][i] = Integer.parseInt(st.nextToken().trim());
+            }
+            
+            for(int i = 1; i <= K ; i++){
+                for(int j = 1; j <= N ; j++){                     
+                    for(int node : AL[j]){
+                        D[i][j] += D[i-1][node];
+                    }
+                     
+                    if(i == 1)
+                        D[i][j] = D[i][j] + D[0][j];
+                    else 
+                        D[i][j] = D[i][j] - D[i-2][j] * (AL[j].size() -1);
+                }
+            }
+
+            long ans = 0;
+            for(int i = 1; i <= N ; i++){   
+                ans += D[K][i];
+            }
+             
+            bw.write("#"+T+" "+ans+"\n");
+            bw.flush();
+        }
+         
+        br.close();
+        bw.close();
+         
+    }
+}
+
+*/

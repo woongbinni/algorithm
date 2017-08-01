@@ -27,3 +27,54 @@
 #2 80
 
 */
+
+/*
+import java.io.*;
+
+public class Solution {
+
+	public static int N;
+	public static int maxM = 4097;
+	public static int[][] table;
+	public static long[] D = new long[12];
+	public static int mod = 100000123;
+
+	public static void main(String args[]) throws Exception {
+
+//		System.setIn(new FileInputStream("c:/sample_input.txt"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+
+		table = new int[maxM][maxM];
+
+		for (int i = 0; i < maxM; i++) {
+			table[i][0] = 1;
+			table[i][i] = 1;
+		}
+
+		for (int i = 2; i < maxM; i++) {
+			for (int j = 1; j < i; j++) {
+				table[i][j] = (table[i - 1][j - 1] + table[i - 1][j]) % mod;
+			}
+		}
+
+		D[0] = 1;
+		D[1] = 2;
+		for (int i = 2; i < 12; i++) {
+			int st = (int) (Math.pow(2, i) - 1);
+			int c = st - 1;
+			int ed = (int) (Math.pow(2, i + 1) - 2);
+			for (int j = st; j <= ed; j++) {
+				D[i] = (((D[i - 1] % mod * D[i - 1] % mod) % mod * table[j - 1][c]) % mod + D[i]) % mod;
+			}
+		}
+
+		for (int t = 1; t <= T; t++) {
+			N = Integer.parseInt(br.readLine());
+			System.out.println("#" + t + " " + D[N]);
+		}
+
+	}
+}
+*/
+

@@ -48,3 +48,120 @@
 #2 10
 #3 4 
 */
+
+/*
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+	static final int max=40000;
+	static final int high = (int)(Math.log(max)/Math.log(2));
+	static int N, ans, root;
+	static int[] depth, npath;
+	static int[][] par, path;
+	static ArrayList<Integer>[] adj = new ArrayList[max+1];
+	public static void main(String[] args) throws Exception{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int T = Integer.parseInt(br.readLine());
+		for(int ts=1;ts<=T;ts++){
+			N = Integer.parseInt(br.readLine());
+
+			depth = new int[N+1];
+			npath = new int[N+1];
+			par   = new int[N+1][high+1];
+			path  = new int[N+1][11];
+			for(int i=0;i<=N;i++){
+				adj[i] = new ArrayList<Integer>();
+			}
+
+			for(int i=1;i<=N;i++){
+				StringTokenizer st = new StringTokenizer(br.readLine());
+				int p   = Integer.parseInt(st.nextToken());
+				
+				if(p==0) root = i;
+				adj[p].add(i);
+				par[i][0] = p;
+				
+				st.nextToken();
+
+				npath[i] = Integer.parseInt(st.nextToken());
+
+				for(int j=1;j<=npath[i];j++){
+					path[i][j] = Integer.parseInt(st.nextToken());
+				}
+			}
+			
+			setDepth(root);
+			
+			setParent();
+			
+			getAnswer();		
+			
+			bw.write("#"+ts+" "+ans);
+			bw.newLine();
+			bw.flush();
+		}
+		bw.close();
+	}
+	static void getAnswer(){
+		ans = 0;
+		int[] v = new int[N+1];
+		for(int i=1;i<=N;i++){
+			int md = Integer.MAX_VALUE;
+			int tmp = 0;
+			for(int j=1;j<=npath[i];j++){
+				int p = path[i][j];
+
+				if(isParent(i, p)){
+
+					if(md > depth[p]){
+
+						md = depth[p];
+						v[i] = 2*(depth[i] - md);
+					}
+				}
+			}
+			ans += 2*(depth[i] - md);;
+		}
+	}
+	static boolean isParent(int x, int y){
+		if(depth[y] > depth[x]){
+			int tmp = x;
+			x = y;
+			y = tmp;
+		}
+		int ix  = 0;
+		int gap = depth[x] - depth[y];
+		while(gap != 0){
+			if(gap%2==1) x = par[x][ix];
+			ix++;
+			gap /= 2;
+		}
+		if(x==y) return true;
+		else return false;
+	}
+	static void setDepth(int r){
+	    Queue<Integer> que = new LinkedList<>();
+	    que.add(r);
+	    while(!que.isEmpty()){
+	    	int x = que.poll();
+	    	for(int t : adj[x]){
+	    		depth[t] = depth[x] +1;
+	    		que.add(t);
+	    	}
+	    }
+	}
+	static void setParent(){
+		for(int j=1;j<=high;j++){
+			for(int i=1;i<=N;i++){
+				par[i][j] = par[par[i][j-1]][j-1];
+			}
+		}
+	}
+}
+*/
+
