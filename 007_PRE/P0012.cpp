@@ -165,3 +165,102 @@ public class Solution {
 }
 */
 
+#include <iostream>
+using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <list>
+#include <vector>
+
+#define MAX 40000;
+int high = 16;
+int N, ans, root;
+int depth[40001], npath[40001];
+int par[40001][17], path[40001][11];
+vector<int> adj[40001];
+
+bool isParent(int x, int y)
+{
+	if (depth[y] > depth[x])
+	{
+		int tmp = x;
+		x = y;
+		y = tmp;
+	}
+	int ix = 0;
+	int gap = depth[x] - depth[y];
+	while (gap != 0)
+	{
+		if (gap % 2 == 1)
+			x = par[x][ix];
+		ix++;
+		gap /= 2;
+	}
+	if (x == y)
+		return true;
+	else
+		return false;
+}
+
+void getAnswer()
+{
+	ans = 0;
+	int v[40001];
+	for (int i = 1; i <= N; i++)
+	{
+		int md = 0x7FFFFFFF;
+		int tmp = 0;
+		for (int j = 1; j <= npath[i]; j++)
+		{
+			int p = path[i][j];
+
+			if (isParent(i, p))
+			{
+
+				if (md > depth[p])
+				{
+
+					md = depth[p];
+					v[i] = 2 * (depth[i] - md);
+				}
+			}
+		}
+		ans += 2 * (depth[i] - md);
+	}
+}
+
+void setDepth(int r)
+{
+	list<int> que;
+	que.push_back(r);
+	while (!que.empty())
+	{
+		int x = que.front();
+		que.pop_front();
+
+		for (int i=0 ; i<adj[x].size(); ++i)
+		{
+			int t = adj[x][i];
+			depth[t] = depth[x] + 1;
+			que.push_back(t);
+		}
+	}
+}
+
+void setParent()
+{
+	for (int j = 1; j <= high; j++)
+	{
+		for (int i = 1; i <= N; i++)
+		{
+			par[i][j] = par[par[i][j - 1]][j - 1];
+		}
+	}
+}
+
+int main(void)
+{
+
+	return 0;
+}
