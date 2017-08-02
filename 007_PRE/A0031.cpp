@@ -28,64 +28,57 @@
 
 */
 
-/*
-import java.io.*;
-
-public class Solution {
-
-	public static int N;
-	public static int maxM = 4097;
-	public static int[][] table;
-	public static long[] D = new long[12];
-	public static int mod = 100000123;
-
-	public static void main(String args[]) throws Exception {
-
-//		System.setIn(new FileInputStream("c:/sample_input.txt"));
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
-
-		table = new int[maxM][maxM];
-
-		for (int i = 0; i < maxM; i++) {
-			table[i][0] = 1;
-			table[i][i] = 1;
-		}
-
-		for (int i = 2; i < maxM; i++) {
-			for (int j = 1; j < i; j++) {
-				table[i][j] = (table[i - 1][j - 1] + table[i - 1][j]) % mod;
-			}
-		}
-
-		D[0] = 1;
-		D[1] = 2;
-		for (int i = 2; i < 12; i++) {
-			int st = (int) (Math.pow(2, i) - 1);
-			int c = st - 1;
-			int ed = (int) (Math.pow(2, i + 1) - 2);
-			for (int j = st; j <= ed; j++) {
-				D[i] = (((D[i - 1] % mod * D[i - 1] % mod) % mod * table[j - 1][c]) % mod + D[i]) % mod;
-			}
-		}
-
-		for (int t = 1; t <= T; t++) {
-			N = Integer.parseInt(br.readLine());
-			System.out.println("#" + t + " " + D[N]);
-		}
-	}
-}
-*/
 
 #include <iostream>
 using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
-int main(void){
+int T, N;
+int combination[4097][4097];
+long long DP[12];
+long long mod = 100000123;
 
+int main(void)
+{
+	scanf("%d", &T);
 
+	for (int i = 0; i < 4097; i++)
+	{
+		combination[i][0] = 1;
+		combination[i][i] = 1;
+	}
+
+	for (int i = 2; i < 4097; i++)
+	{
+		for (int j = 1; j < i; j++)
+		{
+			combination[i][j] = (combination[i - 1][j - 1] + combination[i - 1][j]) % mod;
+		}
+	}
+
+	DP[0] = 1;
+	DP[1] = 2;
+	for (int i = 2; i < 12; i++)
+	{
+		int st = (int)(pow(2, i) - 1);
+		int c = st - 1;
+		int ed = (int)(pow(2, i + 1) - 2);
+		long long temp = 0;
+		for (int j = st; j <= ed; j++)
+		{
+			temp += combination[j - 1][c];
+			temp %= mod;
+		}
+		DP[i] = (((DP[i - 1] * DP[i - 1]) % mod) * temp) % mod;
+	}
+
+	for(int tc=1; tc<=T; ++tc){
+		scanf("%d", &N);
+		printf("#%d %lld\n", tc, DP[N]);
+	}
 
 	return 0;
 }
