@@ -175,7 +175,7 @@ using namespace std;
 
 #define MAX 40000;
 int high = 16;
-int N, ans, root;
+int T, N, ans, root;
 int depth[40001], npath[40001];
 int par[40001][17], path[40001][11];
 vector<int> adj[40001];
@@ -239,7 +239,7 @@ void setDepth(int r)
 		int x = que.front();
 		que.pop_front();
 
-		for (int i=0 ; i<adj[x].size(); ++i)
+		for (int i = 0; i < adj[x].size(); ++i)
 		{
 			int t = adj[x][i];
 			depth[t] = depth[x] + 1;
@@ -261,6 +261,45 @@ void setParent()
 
 int main(void)
 {
+	scanf("%d", &T);
+	for (int ts = 1; ts <= T; ts++)
+	{
+		memset(depth, 0x00, sizeof(depth));
+		memset(npath, 0x00, sizeof(npath));
+		memset(par, 0x00, sizeof(par));
+		memset(path, 0x00, sizeof(path));
+		for(int i=0; i<40001; ++i){
+			adj[i].clear();
+		}
+
+		scanf("%d", &N);
+
+		for (int i = 1; i <= N; i++)
+		{
+			int p, temp;
+			scanf("%d", &p);
+
+			if (p == 0)
+				root = i;
+			adj[p].push_back(i);
+			par[i][0] = p;
+
+			scanf("%d", &temp);
+
+			scanf("%d", &(npath[i]));
+
+			for (int j = 1; j <= npath[i]; j++)
+			{
+				scanf("%d", &(path[i][j]));
+			}
+		}
+
+		setDepth(root);
+		setParent();
+		getAnswer();
+
+		printf("#%d %d\n",ts, ans);
+	}
 
 	return 0;
 }
