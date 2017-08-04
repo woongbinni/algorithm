@@ -268,7 +268,7 @@ int main(void)
 		memset(npath, 0x00, sizeof(npath));
 		memset(par, 0x00, sizeof(par));
 		memset(path, 0x00, sizeof(path));
-		for(int i=0; i<40001; ++i){
+		for(int i=0; i<(N+1); ++i){
 			adj[i].clear();
 		}
 

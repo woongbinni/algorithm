@@ -115,10 +115,61 @@ using namespace std;
 #include <string.h>
 #include <vector>
 
-int main(void){
-    
+int T, N, K;
+vector<int> AL[100001];
+long long D[101][100001];
+
+int main(void)
+{
+    scanf("%d", &T);
+
+    for (int tc = 1; tc <= T; ++tc)
+    {
+        scanf("%d%d", &N, &K);
+
+        for(int i=0; i<N+1; ++i){
+            AL[i].clear();
+        }
+        memset(D, 0x00, sizeof(D));
+
+        for (int i = 1; i < N; i++)
+        {
+            int from, to;
+            scanf("%d%d", &from, &to);
+ 
+            AL[from].push_back(to);
+            AL[to].push_back(from);
+        }
+
+        for (int i = 1; i <= N; i++)
+        {
+            scanf("%d", &(D[0][i]));
+        }
+
+        for (int i = 1; i <= K; i++)
+        {
+            for (int j = 1; j <= N; j++)
+            {
+                for (int k = 0; k <AL[j].size(); ++k )
+                {
+                    D[i][j] += D[i - 1][AL[j][k]];
+                }
+
+                if (i == 1)
+                    D[i][j] = D[i][j] + D[0][j];
+                else
+                    D[i][j] = D[i][j] - D[i - 2][j] * (AL[j].size() - 1);
+            }
+        }
+
+        long long ans = 0;
+        for (int i = 1; i <= N; i++)
+        {
+            ans += D[K][i];
+        }
+
+        printf("#%d %lld\n", tc, ans);
+    }
 
     return 0;
 }
-
-
