@@ -29,7 +29,13 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Linux",
@@ -48,7 +54,9 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Win32",
@@ -74,8 +82,10 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
-    "version": 2
+    "version": 4
 }
