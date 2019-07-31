@@ -3,37 +3,36 @@ https://www.acmicpc.net/problem/1003
 ********************************************************************************/
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
+typedef struct _fibo_cnt {
+    unsigned int cnt0;
+    unsigned int cnt1;
+}fibo_cnt;
 
-int T, N;
-int ans_0, ans_1;
+fibo_cnt fibo_cnts[42];
 
-int fibonacci(int n) {
-	if (n == 0) {
-		ans_0 += 1;
-		return 0;
-	} else if (n == 1) {
-		ans_1 += 1;
-		return 1;
-	} else {
-		return fibonacci(n - 1) + fibonacci(n - 2);
-	}
-}
+int main(void){
+    int N;
 
-int main(void) {
-	scanf("%d", &T);
+    fibo_cnts[0].cnt0 = 1;
+    fibo_cnts[0].cnt1 = 0;
 
-	for (int tc = 1; tc <= T; ++tc) {
-		ans_0 = ans_1 = 0;
+    fibo_cnts[1].cnt0 = 0;
+    fibo_cnts[1].cnt1 = 1;
 
-		scanf("%d", &N);
+    for(int i=2; i<=40; ++i){
+        fibo_cnts[i].cnt0 = fibo_cnts[i-1].cnt0 + fibo_cnts[i-2].cnt0;
+        fibo_cnts[i].cnt1 = fibo_cnts[i-1].cnt1 + fibo_cnts[i-2].cnt1;
 
-		fibonacci(N);
+    }
 
-		printf("%d %d\n", ans_0, ans_1);
-	}
+    scanf("%d", &N);
+    for(int i=0; i<N; ++i){
+        int temp;
+        scanf("%d", &temp);
 
-	return 0;
+        printf("%u %u\n", fibo_cnts[temp].cnt0, fibo_cnts[temp].cnt1);
+    }
+
+    return 0;
 }
