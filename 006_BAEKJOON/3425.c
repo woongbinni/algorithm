@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#define TRUE 1
+#define FALSE 0
+
 typedef enum _operation
 {
     NUM = 1,
@@ -28,7 +31,7 @@ int stack_count = 0;
 
 int simulate(int ins_num)
 {
-    int isError = 0;
+    int isError = FALSE;
     switch (ins_set[ins_num].opr)
     {
     case NUM:
@@ -38,7 +41,7 @@ int simulate(int ins_num)
     case POP:
         if (stack_count == 0)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -48,7 +51,7 @@ int simulate(int ins_num)
     case INV:
         if (stack_count == 0)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -58,7 +61,7 @@ int simulate(int ins_num)
     case DUP:
         if (stack_count == 0)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -69,7 +72,7 @@ int simulate(int ins_num)
     case SWP:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -81,7 +84,7 @@ int simulate(int ins_num)
     case ADD:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -92,7 +95,7 @@ int simulate(int ins_num)
     case SUB:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -103,7 +106,7 @@ int simulate(int ins_num)
     case MUL:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -114,11 +117,11 @@ int simulate(int ins_num)
     case DIV:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else if (stack[stack_count - 1] == 0)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -129,11 +132,11 @@ int simulate(int ins_num)
     case MOD:
         if (stack_count < 2)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else if (stack[stack_count - 1] == 0)
         {
-            isError = 1;
+            isError = TRUE;
         }
         else
         {
@@ -146,7 +149,7 @@ int simulate(int ins_num)
     }
     if (stack[stack_count - 1] > 1000000000 || stack[stack_count - 1] < -1000000000)
     {
-        isError = 1;
+        isError = TRUE;
     }
     return isError;
 }
@@ -179,12 +182,12 @@ int main()
                 {
                     isError = simulate(j);
                     // print_stack();
-                    if (isError)
+                    if (isError == TRUE)
                     {
                         break;
                     }
                 }
-                if (stack_count == 1 && isError != 1)
+                if (stack_count == 1 && isError != TRUE)
                 {
                     printf("%lld\n", stack[0]);
                 }
