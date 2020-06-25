@@ -54,7 +54,7 @@ int main()
     scanf("%d%d", &N, &K);
     for (int i = 0; i < N; ++i)
     {
-        scanf("%s", &input[i]);
+        scanf("%s", (char *)(input[i]));
     }
 
     if (K < 5)
