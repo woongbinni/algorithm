@@ -2,3 +2,9 @@ a.out
 a.exe
 algorithm.sublime-workspace
 .vscode/
+*.dSYM/
+*
+!/**/
+!*.cpp
+!*.c
+!.gitignore #unignore .gitignore
