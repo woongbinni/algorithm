@@ -22,14 +22,6 @@ long long updateParents(long long a)
 
 void unionSample(long long a, long long b, long long w)
 {
-    if (a > b)
-    {
-        long long temp; 
-        temp = a;
-        a = b;
-        b = temp;
-        w = 0-w;
-    }
     updateParents(a);
     updateParents(b);
     long long x = diff[b];
